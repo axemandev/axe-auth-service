@@ -1,1 +1,3 @@
 rootProject.name = 'axe-auth-service'
+
+include 'auth-server'
