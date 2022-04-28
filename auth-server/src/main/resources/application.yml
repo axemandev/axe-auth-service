@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${PGDATABASE}
+    username: ${PGUSERNAME}
+    password: ${PGPASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  servlet:
+    context-path: /auth/api

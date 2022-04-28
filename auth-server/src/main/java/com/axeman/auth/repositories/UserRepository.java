@@ -1,7 +1,9 @@
 package com.axeman.auth.repositories;
 
 import com.axeman.auth.entities.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends CrudRepository<User, String> {
+@Repository
+public interface UserRepository extends JpaRepository<User, String> {
 }

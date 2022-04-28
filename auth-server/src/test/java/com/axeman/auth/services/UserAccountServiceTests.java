@@ -5,6 +5,7 @@ import com.axeman.auth.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -13,25 +14,27 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class UserAccountServiceTest {
+public class UserAccountServiceTests {
 
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    UserAccountService userAccountService;
+    @InjectMocks
+    private UserAccountService userAccountService;
 
-    User testUser;
+    private User testUser;
 
     @BeforeEach
     public void setup() {
-        testUser = new User();
-        userAccountService = new UserAccountService();
+        testUser = User.builder()
+                .username("test-user")
+                .build();
         when(userRepository.save(any(User.class))).thenReturn(testUser);
     }
 
     @Test
     public void givenNewAccountDetails_shouldCreateNewAccount() {
         User newUserAccount = userAccountService.createAccount(testUser);
-        assertEquals(testUser.getUsername(), newUserAccount.getUsername(), "Account username mismatch");
+        assertEquals("test-user", newUserAccount.getUsername());
     }
 }
