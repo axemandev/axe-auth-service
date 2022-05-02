@@ -18,6 +18,10 @@ import java.util.Date;
 @Table(name = "users", schema = "axe_auth_schema")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userid")
+    Long userid;
+
     @Column(name = "username", nullable = false, insertable = true, updatable = true, unique = true)
     String username;
 
@@ -27,7 +31,7 @@ public class User {
     @Column(name = "primary_email", unique = true)
     String primaryEmail;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     String password;
 
     @Column(name = "password_creation_date")
@@ -45,7 +49,7 @@ public class User {
     @Column(name = "mfa_id")
     String mfaId;
 
-    @Column(name = "salt")
+    @Column(name = "salt", nullable = false)
     String salt;
 
     @Column(name = "profile_image_path")
